@@ -13,48 +13,9 @@ export interface Employee {
   job_title: string;
   email: string;
   hire_date: string;
-  department_id: number;
   department_name: string;
-  section_id: number | null;
-  section_name: string | null;
-  location_id: number;
   location_name: string;
-  manager_id: number | null;
   manager_name: string | null;
-  is_active: boolean;
-}
-
-export interface EmployeeUpdate {
-  full_name?: string;
-  job_title?: string;
-  email?: string;
-  department_id?: number;
-  section_id?: number | null;
-  manager_id?: number | null;
-}
-
-export interface AssignableOption {
-  id: number;
-  name: string;
-}
-
-export interface Department {
-  department_id: number;
-  department_name: string;
-  location_id: number;
-  location_name: string;
-}
-
-export interface Section {
-  section_id: number;
-  section_name: string;
-  department_id: number;
-  department_name: string;
-}
-
-export interface Location {
-  location_id: number;
-  location_name: string;
 }
 
 export interface Payroll {

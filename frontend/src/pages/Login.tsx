@@ -3,19 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
 const DEMO_ACCOUNTS = [
-  { username: "alice.chen", role: "Executive", scope: "ALL — sees + can assign everything" },
-  {
-    username: "bob.singh",
-    role: "HR Business Partner",
-    scope: "SELECTED — dept HR+Finance (visibility), section Core HR+Core Finance only (assignable)",
-  },
+  { username: "alice.chen", role: "Executive", scope: "ALL — sees every employee/payroll/leave record" },
+  { username: "bob.singh", role: "HR Business Partner", scope: "DEPARTMENT — HR + Finance only" },
   { username: "carol.mehta", role: "Engineering Manager", scope: "TEAM — herself + her reporting subtree" },
   { username: "david.kim", role: "Employee", scope: "OWN — herself only" },
-  {
-    username: "nina.rao",
-    role: "Talent & Enterprise Analyst",
-    scope: "SELECTED — Section only (Talent Acquisition + Enterprise), no Department at all — spans HR and Sales",
-  },
 ];
 
 export function Login() {
