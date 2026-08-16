@@ -53,13 +53,13 @@ export function Leave() {
       <div className="page-header">
         <h2>Leave requests</h2>
         <p className="scope-note">
-          Approvals are validated twice: the "leave:approve" permission (RBAC) gates the button, and the
+          Approvals are validated twice: the "leave.approve" permission (RBAC) gates the button, and the
           database's row-level security decides which requests you can even reach — approving a request
           outside your data scope fails as if it doesn't exist.
         </p>
       </div>
 
-      {hasPermission("leave:write") && (
+      {hasPermission("leave.add") && (
         <form onSubmit={handleCreate} className="leave-form">
           <label>
             Start date
@@ -97,7 +97,7 @@ export function Leave() {
               <th>Start</th>
               <th>End</th>
               <th>Status</th>
-              {hasPermission("leave:approve") && <th></th>}
+              {hasPermission("leave.approve") && <th></th>}
             </tr>
           </thead>
           <tbody>
@@ -110,7 +110,7 @@ export function Leave() {
                 <td>
                   <span className={`status-badge status-${r.status.toLowerCase()}`}>{r.status}</span>
                 </td>
-                {hasPermission("leave:approve") && (
+                {hasPermission("leave.approve") && (
                   <td>
                     {r.status === "PENDING" && (
                       <button className="btn-secondary" onClick={() => handleApprove(r.leave_request_id)}>

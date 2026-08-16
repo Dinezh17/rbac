@@ -2,6 +2,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-d
 import { AuthProvider, useAuth } from "./auth/AuthContext";
 import { Navbar } from "./components/Navbar";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Departments } from "./pages/Departments";
 import { Employees } from "./pages/Employees";
 import { Leave } from "./pages/Leave";
 import { Login } from "./pages/Login";
@@ -18,7 +19,7 @@ function Shell() {
           <Route
             path="/employees"
             element={
-              <ProtectedRoute requirePermission="employee:read">
+              <ProtectedRoute requirePermission="employee.view">
                 <Employees />
               </ProtectedRoute>
             }
@@ -26,7 +27,7 @@ function Shell() {
           <Route
             path="/payroll"
             element={
-              <ProtectedRoute requirePermission="payroll:read">
+              <ProtectedRoute requirePermission="payroll.view">
                 <Payroll />
               </ProtectedRoute>
             }
@@ -34,8 +35,16 @@ function Shell() {
           <Route
             path="/leave"
             element={
-              <ProtectedRoute requirePermission="leave:read">
+              <ProtectedRoute requirePermission="leave.view">
                 <Leave />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/departments"
+            element={
+              <ProtectedRoute requirePermission="department.view">
+                <Departments />
               </ProtectedRoute>
             }
           />

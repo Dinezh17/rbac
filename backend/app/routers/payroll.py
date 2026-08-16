@@ -31,7 +31,7 @@ _PAYROLL_LIST_SQL = """
 
 @router.get("", response_model=list[PayrollOut])
 def list_payroll(
-    _user=Depends(require_permission("payroll:read")),
+    _user=Depends(require_permission("payroll.view")),
     db: Session = Depends(get_scoped_db),
 ) -> list[PayrollOut]:
     rows = db.execute(text(_PAYROLL_LIST_SQL)).mappings().all()

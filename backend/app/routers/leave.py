@@ -25,7 +25,7 @@ _LEAVE_SELECT_SQL = """
 
 @router.get("", response_model=list[LeaveRequestOut])
 def list_leave_requests(
-    _user=Depends(require_permission("leave:read")),
+    _user=Depends(require_permission("leave.view")),
     db: Session = Depends(get_scoped_db),
 ) -> list[LeaveRequestOut]:
     rows = db.execute(text(_LEAVE_SELECT_SQL + " ORDER BY lr.RequestedAt DESC")).mappings().all()
@@ -35,7 +35,7 @@ def list_leave_requests(
 @router.post("", response_model=LeaveRequestOut, status_code=status.HTTP_201_CREATED)
 def create_leave_request(
     payload: LeaveRequestCreate,
-    user: CurrentUser = Depends(require_permission("leave:write")),
+    user: CurrentUser = Depends(require_permission("leave.add")),
     db: Session = Depends(get_scoped_db),
 ) -> LeaveRequestOut:
     if user.employee_id is None:
@@ -72,7 +72,7 @@ def create_leave_request(
 @router.patch("/{leave_request_id}/approve", response_model=LeaveRequestOut)
 def approve_leave_request(
     leave_request_id: int,
-    _user=Depends(require_permission("leave:approve")),
+    _user=Depends(require_permission("leave.approve")),
     db: Session = Depends(get_scoped_db),
 ) -> LeaveRequestOut:
     # No explicit "is this requester within my scope" check here - the RLS

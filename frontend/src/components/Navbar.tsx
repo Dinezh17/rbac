@@ -16,19 +16,24 @@ export function Navbar() {
     <header className="navbar">
       <div className="navbar-brand">Lakshmi Corp HRMS</div>
       <nav className="navbar-links">
-        {hasPermission("employee:read") && (
+        {hasPermission("employee.view") && (
           <NavLink to="/employees" className={({ isActive }) => (isActive ? "active" : "")}>
             Employees
           </NavLink>
         )}
-        {hasPermission("payroll:read") && (
+        {hasPermission("payroll.view") && (
           <NavLink to="/payroll" className={({ isActive }) => (isActive ? "active" : "")}>
             Payroll
           </NavLink>
         )}
-        {hasPermission("leave:read") && (
+        {hasPermission("leave.view") && (
           <NavLink to="/leave" className={({ isActive }) => (isActive ? "active" : "")}>
             Leave
+          </NavLink>
+        )}
+        {hasPermission("department.view") && (
+          <NavLink to="/departments" className={({ isActive }) => (isActive ? "active" : "")}>
+            Departments
           </NavLink>
         )}
       </nav>
